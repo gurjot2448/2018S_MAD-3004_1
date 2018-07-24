@@ -9,6 +9,33 @@
 import Foundation
 
 class Reservation: Flight,Passenger1{
+    
+    //display function of reservation
+    override func displayData() -> String {
+        var returnData = ""
+        
+        if self.Reservation_id != nil{
+            returnData += "\n Reservation Id: \(self.Reservation_id)"
+        }
+        if self.reservation_description != nil{
+            returnData += "\n Reservation Description:" +  self.reservation_description!
+        }
+        if self.res_date != nil{
+            returnData += "\n Date:" +  self.res_date!
+        }
+        if self.res_seat_number != nil{
+            returnData += "\n Seat number:" +  self.res_seat_number!
+        }
+        if self.res_status != nil{
+            returnData += "\n Status:" +  self.res_status!
+        }
+        if self.res_meal_type != nil{
+            returnData += "\n Meal:" +  self.res_meal_type!
+        }
+        return returnData
+        
+    }
+    
   
     
     
@@ -24,72 +51,55 @@ class Reservation: Flight,Passenger1{
     var passengerId : Int?
     var passportNumber : String?
     var name : String?
-    var address : String?
-    var email : String?
-    var mobile : String?
+    var pass_address : String?
+    var pass_email : String?
+    var pass_mobile : String?
     var date_of_birth : String?
     
-     //parameterized initializer
-   required init(passengerId: Int, passportNumber: String, name: String, address: String, email: String, mobile: String, date_of_birth: String){
+     //parameterized initializer of passenger1
+   
+    required init(passengerId: Int, passportNumber: String, name: String, pass_address: String, pass_email: String, pass_mobile: String, date_of_birth: String){
         self.passengerId = passengerId
         self.passportNumber = passportNumber
         self.name = name
-        self.address = address
-        self.email = email
-        self.mobile = mobile
+        self.pass_address = pass_address
+        self.pass_email = pass_email
+        self.pass_mobile = pass_mobile
         self.date_of_birth = date_of_birth
         
-      super.init()
+    
     }
     
-    //parameterized initializer
+    //parameterized initializer of reservation
     required init(  Reservation_id: Int, res_flight_id:String, reservation_description: String, res_date: String, res_seat_number: String, res_status: String,
                     res_meal_type: String){
         
         self.Reservation_id = Reservation_id
-        
-        
         self.reservation_description = reservation_description
         self.res_date = res_date
         self.res_seat_number = res_seat_number
         self.res_status = res_status
         self.res_meal_type = res_meal_type
-        
         super.init()
+        
     }
 
     
-    func displayData() -> String {
     
-
- var returnData = ""
- 
- if self.passengerId != nil{
- returnData += "\n Passenger Id: \(self.passengerId)"
- }
- if self.passportNumber != nil{
- returnData += "\n Passport Number:" +  self.passportNumber!
- }
- if self.name != nil{
- returnData += "\n Passenger Name:" +  self.name!
- }
- if self.address != nil{
- returnData += "\n Address:" +  self.address!
- }
- if self.email != nil{
- returnData += "\n Email:" +  self.email!
- }
- if self.mobile != nil{
- returnData += "\n Mobile:" +  self.mobile!
- }
- if self.date_of_birth != nil{
- returnData += "\n Date of birth:" +  self.date_of_birth!
- }
-        
+ //display function of reservation
+    
+    func displayData1(){
+        print("Reservation Id : \(self.Reservation_id ?? 0)")
+        print("Reservation Description : \(self.reservation_description ?? "Unknown")")
+        print("Date : \(self.res_date ?? "Unknown")")
+        print("Seat number : \(self.res_seat_number ?? "Unknown")")
+        print("Status : \(self.res_status ?? "Unknown")")
+        print("Meal type: \(self.res_meal_type ?? "Unknown")")
+    }
 
       
- return returnData
-    }
+ 
+    //passenger function
     
     func addPassenger()
     {
@@ -100,14 +110,15 @@ class Reservation: Flight,Passenger1{
         print("Enter your Name : ")
         self.name = readLine()
         print("Enter Address: ")
-        self.address = readLine()!
+        self.pass_address = readLine()!
         print("Enter email : ")
-        self.email = readLine()!
+        self.pass_email = readLine()!
         print("Enter your mobile number : ")
-        self.mobile = readLine()!
+        self.pass_mobile = readLine()!
         print("Enter date_of_birth : ")
         self.date_of_birth = readLine()!
         super.registerUser()
+        
     }
     
     
@@ -165,15 +176,7 @@ class Reservation: Flight,Passenger1{
         }
     }
     
-    var Address : String?{
-        get{
-            return self.address
-        }
-        set{
-            self.address = newValue
-        }
-    }
-    
+   
     var Email : String?{
         get{
             return self.email
@@ -200,7 +203,8 @@ class Reservation: Flight,Passenger1{
         }
     }
     
-    //default initializer / constructor
+    //default initializer / constructor of reservation and passenger
+    
     required override init(){
         
         self.Reservation_id = 0
@@ -220,7 +224,9 @@ class Reservation: Flight,Passenger1{
         self.date_of_birth = ""
         super.init()
         
+        
     }
+    
     
     
    

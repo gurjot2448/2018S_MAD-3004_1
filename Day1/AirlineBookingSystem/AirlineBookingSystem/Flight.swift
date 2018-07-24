@@ -8,79 +8,100 @@
 
 import Foundation
 
-class Flight{
-    private var flightID : String?
-    private var flightFrom : String?
-    private var flightTo : String?
-    private var flightScheduleDate : String?
-    private var flightAirlineId : Int?
-    private var flightAirplaneId : String?
-    private var flightPilotId : String?
+class Flight: AirlineDetails,Plane_Type1,Employee1{
     
-    var FlightID : String?{
-        get{
-            return self.flightID
-        }
-        set{
-            self.flightID = newValue
-        }
+    required init(employeeID: Int, employeeName: String, email: String, emp_mobile: String, emp_address: String, designation: String, SINnumber: String) {
+        
+        self.employeeID = employeeID
+        self.employeeName = employeeName
+        self.email = email
+        self.emp_mobile = emp_mobile
+        self.emp_address = emp_address
+        self.designation = designation
+        self.SINnumber = SINnumber
+    
     }
     
-    var FlightFrom : String?{
-        get{
-            return self.flightFrom
-        }
-        set{
-            self.flightFrom = newValue
-        }
+    
+    var employeeID: Int?
+    
+    var employeeName: String?
+    
+    var email: String?
+    
+    var emp_mobile: String?
+    
+    var emp_address: String?
+    
+    var designation: String?
+    
+    var SINnumber: String?
+    
+    
+    var flightID : String?
+    var flightFrom : String?
+    var flightTo : String?
+    var flightScheduleDate : String?
+    var flightAirlineId : Int?
+    var flightAirplaneId : String?
+    var flightPilotId : String?
+    
+    
+    var plane_type_id : String?
+    var plane_type_total_seats : Int?
+    var plane_type_seat_map : String?
+    
+    
+   
+    
+    //default initializer of plane_type / constructor
+   required override init(){
+    
+    self.plane_type_id = ""
+    self.plane_type_total_seats = 0
+    self.plane_type_seat_map = ""
+    self.flightID = ""
+    self.flightFrom = ""
+    self.flightTo = ""
+    self.flightScheduleDate = ""
+    self.flightAirlineId = 0
+    self.flightAirplaneId = ""
+    self.flightPilotId = ""
+    super.init()
+    self.employeeID = 0
+    self.employeeName = ""
+    self.email = ""
+    self.emp_mobile = ""
+    self.emp_address = ""
+    self.designation = ""
+    self.SINnumber = ""
+    
+        
     }
     
-    var FlightTo : String?{
-        get{
-            return self.flightTo
-        }
-        set{
-            self.flightTo = newValue
-        }
+    //parameterized initializer of plane type
+    
+    required init( plane_type_id : String,  plane_type_total_seats : Int, plane_type_seat_map  : String){
+        
+        self.plane_type_id = plane_type_id
+        self.plane_type_total_seats = plane_type_total_seats
+        self.plane_type_seat_map = plane_type_seat_map
+        
+        
     }
     
-    var FlightScheduleDate : String?{
-        get{
-            return self.flightScheduleDate
-        }
-        set{
-            self.flightScheduleDate = newValue
-        }
+    func addPlaneTYpe(){
+        
+        print("Enter plane type Id : ")
+        self.plane_type_id = readLine()!
+        print("Enter plane_type_total_seats : ")
+        self.plane_type_total_seats = (Int)(readLine()!)!
+        print("Enter plane_type_seat_map  : ")
+        self.plane_type_seat_map = readLine()!
+        
     }
     
-    var FlightAirlineId : Int?{
-        get{
-            return self.flightAirlineId
-        }
-        set{
-            self.flightAirlineId = newValue
-        }
-    }
-    
-    var FlightAirplaneId : String?{
-        get{
-            return self.flightAirplaneId
-        }
-        set{
-            self.flightAirplaneId = newValue
-        }
-    }
-    
-    var FlightPilotId : String?{
-        get{
-            return self.flightPilotId
-        }
-        set{
-            self.flightPilotId = newValue
-        }
-    }
-    
-    init(){
+    /*override init(){
         self.flightID = ""
         self.flightFrom = ""
         self.flightTo = ""
@@ -88,19 +109,22 @@ class Flight{
         self.flightAirlineId = 0
         self.flightAirplaneId = ""
         self.flightPilotId = ""
-    }
+        super.init()
+        
+    }*/
     
-    init(flightID: String, flightFrom: String, flightTo: String, flightScheduleDate: String, flightAirlineId: Int, flightAirplaneId: String, flightPilotId: String){
+    init(flightID: String, flightFrom: String, flightTo: String, flightScheduleDate: String, flightAirplaneId: String, flightPilotId: String,airlinesID : Int){
         self.flightID = flightID
         self.flightFrom = flightFrom
         self.flightTo = flightTo
         self.flightScheduleDate = flightScheduleDate
-        self.flightAirlineId = flightAirlineId
+        super.init(airlinesID: airlinesID)
         self.flightAirplaneId = flightAirplaneId
         self.flightPilotId = flightPilotId
+        
     }
     
-    func registerUser(){
+    override func registerUser(){
         print("Enter Flight Id : ")
         self.flightID = readLine()!
         print("Enter Flight From : ")
@@ -114,7 +138,9 @@ class Flight{
         print("Enter Flight Airplane Id : ")
         self.flightAirplaneId = readLine()!
         print("Enter Flight Pilot Id : ")
-        self.flightPilotId = readLine()!    }
+        self.flightPilotId = readLine()!
+        super.registerUser()
+    }
     
 }
 

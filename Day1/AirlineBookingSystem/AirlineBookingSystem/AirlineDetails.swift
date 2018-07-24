@@ -45,6 +45,12 @@ class AirlineDetails{
         self.airlinesType = airlinesType
     }
     
+    init(airlinesID: Int){
+        
+        self.airlinesID = airlinesID
+        
+    }
+    
     func displayData() -> String{
         var returnData = ""
         
